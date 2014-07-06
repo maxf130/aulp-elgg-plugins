@@ -38,4 +38,6 @@ $home_guid = $home->save();
 if (!$home_guid) {
     register_error("The home page could not be saved");
     forward(REFERER);
+} else {
+    forward('/');
 }
