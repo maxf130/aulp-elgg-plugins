@@ -8,9 +8,21 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/engine/start.php";
 
+$homes = elgg_get_entities(array(
+    'type' => 'object',
+    'subtype' => 'aulphome'
+));
+
+$home = null;
+
+if(!empty($homes)){
+    $home = $homes[0];
+}
+
+
 $params = array(
-    'title' => 'Aulp',
-    'content' => 'Aulp home text',
+    'title' => $home['title'],
+    'content' => $home['description'],
     'filter' => '',);
 
 $body = elgg_view_layout('content', $params);
