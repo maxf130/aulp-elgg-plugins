@@ -31,12 +31,23 @@ if(!empty($homes)){
     $home = $homes[0];
 }
 
+// If current user is an admin, show link to edit homepage
+if(elgg_is_admin_logged_in()){
+    elgg_register_menu_item('page', array(
+    'name' => 'edit_home',
+    'text' => 'Edit Homepage',
+    'href' => '/home/edit',
+    ));
+}
 
-$params = array(
+
+
+
+$bodyParams = array(
     'title' => $home['title'],
     'content' => $home['description'],
     'filter' => '',);
 
-$body = elgg_view_layout('content', $params);
+$body = elgg_view_layout('one_sidebar', $bodyParams);
 
 echo elgg_view_page('Aulp', $body);
