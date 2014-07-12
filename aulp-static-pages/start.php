@@ -33,10 +33,12 @@ function aulp_static_pages_init() {
     elgg_register_page_handler('about', 'aulp_about');
     
     // Register page handlers for edit forms
-    elgg_register_page_handler('home', 'aulp_home_edit');
+    elgg_register_page_handler('edit', 'aulp_edit');
 
     // Register actions
     elgg_register_action("home/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/home/edit.php", admin);
+    elgg_register_action("contact/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/contact/edit.php", admin);
+    elgg_register_action("about/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/about/edit.php", admin);
 }
 
 function aulp_home() {
@@ -63,10 +65,13 @@ function aulp_about() {
     return true;
 }
 
-function aulp_home_edit($segments){
-    if ($segments[0] == "edit"){
-        include elgg_get_plugins_path() . 'aulp-static-pages/pages/home/edit.php';
-        return true;
+function aulp_edit($segments){
+    $endSegment = $segments[0];
+    if($endSegment == ""){
+        return false;
     }
-    return false;
+    if(!include elgg_get_plugins_path(). 'aulp-static-pages/pages/'.$endSegment.'/edit.php'){
+        return false;
+    }
+    return true;
 }

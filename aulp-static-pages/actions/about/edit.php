@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2014 Maximilian Friedersdorff
+ * Copyright (C) 2014 max
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,34 +18,38 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-include_once elgg_get_site_url() . "/engine/start.php";
+// Grab values from form
+$body = get_input('body');
+$title = get_input('title');
 
+// Grab all hcontact objects (there should only be one)
 $abouts = elgg_get_entities(array(
     'type' => 'object',
     'subtype' => 'aulpabout'
 ));
 
-$about = null;
+$home = NULL;
 
+// Check there is one.  Edit if yes, create if not.
 if(!empty($abouts)){
     $about = $abouts[0];
+}else{
+    $about = new ElggObject();
+    $about->subtype = 'aulpabout';
+    $about->access_id = ACCESS_PUBLIC;
 }
 
-// If current user is an admin, show link to edit homepage
-if(elgg_is_admin_logged_in()){
-    elgg_register_menu_item('page', array(
-    'name' => 'edit_about',
-    'text' => 'Edit About Page',
-    'href' => '/edit/about',
-    ));
+// Assign new content
+$about->description = $body;
+$about->title = $title;
+
+// Attempt to save
+$about_guid = $about->save();
+
+// Check that it has saved, otherwise throw error and send back to form
+if (!$about_guid) {
+    register_error("The about page could not be saved");
+    forward(REFERER);
+} else {
+    forward('/about');
 }
-
-
-$bodyParams = array(
-    'title' => $about['title'],
-    'content' => $about['description'],
-    'filter' => '',);
-
-$body = elgg_view_layout('one_sidebar', $bodyParams);
-
-echo elgg_view_page('Aulp', $body);

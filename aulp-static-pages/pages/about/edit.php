@@ -18,36 +18,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-include_once elgg_get_site_url() . "/engine/start.php";
+gatekeeper();
 
-$homes = elgg_get_entities(array(
-    'type' => 'object',
-    'subtype' => 'aulphome'
+// Set title
+$title = "Edit About";
+
+$content = elgg_view_title($title);
+
+$content .= elgg_view_form('about/edit');
+
+$sidebar = "";
+
+$body = elgg_view_layout('one_sidebar', array(
+    'content' => $content,
+    'sidebar' => $sidebar
 ));
 
-$home = null;
-
-if(!empty($homes)){
-    $home = $homes[0];
-}
-
-// If current user is an admin, show link to edit homepage
-if(elgg_is_admin_logged_in()){
-    elgg_register_menu_item('page', array(
-    'name' => 'edit_home',
-    'text' => 'Edit Homepage',
-    'href' => '/edit/home',
-    ));
-}
-
-
-
-
-$bodyParams = array(
-    'title' => $home['title'],
-    'content' => $home['description'],
-    'filter' => '',);
-
-$body = elgg_view_layout('one_sidebar', $bodyParams);
-
-echo elgg_view_page('Aulp', $body);
+echo elgg_view_page($title, $body);

@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2014 Maximilian Friedersdorff
+ * Copyright (C) 2014 max
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,34 +18,38 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-include_once elgg_get_site_url() . "/engine/start.php";
+// Grab values from form
+$body = get_input('body');
+$title = get_input('title');
 
+// Grab all hcontact objects (there should only be one)
 $contacts = elgg_get_entities(array(
     'type' => 'object',
     'subtype' => 'aulpcontact'
 ));
 
-$contact = null;
+$home = NULL;
 
+// Check there is one.  Edit if yes, create if not.
 if(!empty($contacts)){
     $contact = $contacts[0];
+}else{
+    $contact = new ElggObject();
+    $contact->subtype = 'aulpcontact';
+    $contact->access_id = ACCESS_PUBLIC;
 }
 
-// If current user is an admin, show link to edit homepage
-if(elgg_is_admin_logged_in()){
-    elgg_register_menu_item('page', array(
-    'name' => 'edit_contact',
-    'text' => 'Edit Contact Page',
-    'href' => '/edit/contact',
-    ));
+// Assign new content
+$contact->description = $body;
+$contact->title = $title;
+
+// Attempt to save
+$contact_guid = $contact->save();
+
+// Check that it has saved, otherwise throw error and send back to form
+if (!$contact_guid) {
+    register_error("The contact page could not be saved");
+    forward(REFERER);
+} else {
+    forward('/contact');
 }
-
-
-$bodyParams = array(
-    'title' => $contact['title'],
-    'content' => $contact['description'],
-    'filter' => '',);
-
-$body = elgg_view_layout('one_sidebar', $bodyParams);
-
-echo elgg_view_page('Aulp', $body);

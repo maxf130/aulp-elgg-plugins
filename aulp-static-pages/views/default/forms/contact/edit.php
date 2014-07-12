@@ -1,6 +1,7 @@
-<?php
-
-/* 
+<!--Get the existing contact (if it exists) and prefill values in the form-->
+ <?php 
+ 
+ /* 
  * Copyright (C) 2014 Maximilian Friedersdorff
  *
  * This program is free software; you can redistribute it and/or
@@ -17,37 +18,31 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+ 
+ $contacts = elgg_get_entities(array(
+     'type' => 'object',
+     'subtype' => 'aulpcontact'
+ ));
+ 
+ $body ="";
+ $title ="";
+ 
+ if (!empty($contacts)){
+     $body = $contacts[0]['description'];
+     $title = $contacts[0]['title'];
+ }
+ ?>
+ 
+<div>
+    <label><?php echo elgg_echo("title"); ?></label><br />
+    <?php echo elgg_view('input/text', array('name' => 'title', 'value' => $title)); ?>
+</div>
 
-include_once elgg_get_site_url() . "/engine/start.php";
-
-$homes = elgg_get_entities(array(
-    'type' => 'object',
-    'subtype' => 'aulphome'
-));
-
-$home = null;
-
-if(!empty($homes)){
-    $home = $homes[0];
-}
-
-// If current user is an admin, show link to edit homepage
-if(elgg_is_admin_logged_in()){
-    elgg_register_menu_item('page', array(
-    'name' => 'edit_home',
-    'text' => 'Edit Homepage',
-    'href' => '/edit/home',
-    ));
-}
-
-
-
-
-$bodyParams = array(
-    'title' => $home['title'],
-    'content' => $home['description'],
-    'filter' => '',);
-
-$body = elgg_view_layout('one_sidebar', $bodyParams);
-
-echo elgg_view_page('Aulp', $body);
+ <div>
+     <label><?php echo elgg_echo("body"); ?></label><br />
+     <?php echo elgg_view('input/longtext', array('name' => 'body', 'value' => $body)); ?>
+ </div>
+ 
+ <div>
+     <?php echo elgg_view('input/submit', array('value' => elgg_echo('save'))); ?>
+ </div>
