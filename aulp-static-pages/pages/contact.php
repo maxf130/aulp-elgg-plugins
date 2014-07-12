@@ -18,7 +18,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/engine/start.php";
+include_once elgg_get_site_url() . "/engine/start.php";
 
 $params = array(
     'title' => 'Contact',
