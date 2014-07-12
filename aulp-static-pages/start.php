@@ -40,13 +40,10 @@ function aulp_static_pages_init() {
 }
 
 function aulp_home() {
-    // Dont show if user not logged in
-    if(!elgg_is_logged_in()){
-        return true;
-    }
-
+    
+    echo elgg_get_plugins_path();
     // Ensure page loads, otherwise return false to indicate 404
-    if (!include_once $_SERVER['DOCUMENT_ROOT'] . "/mod/aulp-static-pages/pages/index.php") {
+    if (!include_once elgg_get_plugins_path() . "aulp-static-pages/pages/index.php") {
         return false;
     }
     return true;
@@ -54,7 +51,7 @@ function aulp_home() {
 
 function aulp_contact() {
     // Ensure page loads, otherwise return false to indicate 404
-    if (!include_once $_SERVER['DOCUMENT_ROOT'] . "/mod/aulp-static-pages/pages/contact.php") {
+    if (!include_once elgg_get_plugins_path() . "aulp-static-pages/pages/contact.php") {
         return false;
     }
     return true;
@@ -62,7 +59,7 @@ function aulp_contact() {
 
 function aulp_about() {
     // Ensure page loads, otherwise return false to indicate 404
-    if (!include_once $_SERVER['DOCUMENT_ROOT'] . "/mod/aulp-static-pages/pages/about.php") {
+    if (!include_once elgg_get_plugins_path() . "aulp-static-pages/pages/about.php") {
         return false;
     }
     return true;
