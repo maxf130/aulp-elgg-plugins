@@ -40,8 +40,6 @@ function aulp_static_pages_init() {
 }
 
 function aulp_home() {
-    
-    echo elgg_get_plugins_path();
     // Ensure page loads, otherwise return false to indicate 404
     if (!include_once elgg_get_plugins_path() . "aulp-static-pages/pages/index.php") {
         return false;
