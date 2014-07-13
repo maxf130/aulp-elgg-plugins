@@ -31,12 +31,24 @@ if(!empty($homes)){
     $home = $homes[0];
 }
 
-// If current user is an admin, show link to edit homepage
+// If current user is an admin, show links to edit homepage about and contact
 if(elgg_is_admin_logged_in()){
     elgg_register_menu_item('page', array(
     'name' => 'edit_home',
     'text' => 'Edit Homepage',
     'href' => '/edit/home',
+    ));
+    
+    elgg_register_menu_item('page', array(
+    'name' => 'edit_contact',
+    'text' => 'Edit Contact',
+    'href' => '/edit/contact',
+    ));
+    
+    elgg_register_menu_item('page', array(
+    'name' => 'edit_about',
+    'text' => 'Edit About',
+    'href' => '/edit/about',
     ));
 }
 
