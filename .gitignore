@@ -1,2 +1,5 @@
 # Ignore netbeans project files
 /nbproject/
+
+# Ignore jetbrains project files
+/.idea/
