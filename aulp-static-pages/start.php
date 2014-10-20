@@ -36,9 +36,9 @@ function aulp_static_pages_init() {
     elgg_register_page_handler('edit', 'aulp_edit');
 
     // Register actions
-    elgg_register_action("home/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/home/edit.php", admin);
-    elgg_register_action("contact/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/contact/edit.php", admin);
-    elgg_register_action("about/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/about/edit.php", admin);
+    elgg_register_action("home/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/home/edit.php", 'admin');
+    elgg_register_action("contact/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/contact/edit.php", 'admin');
+    elgg_register_action("about/edit", elgg_get_plugins_path() . "aulp-static-pages/actions/about/edit.php", 'admin');
 }
 
 function aulp_home() {
