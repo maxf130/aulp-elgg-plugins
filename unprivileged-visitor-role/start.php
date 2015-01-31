@@ -23,18 +23,10 @@ function unprivileged_visitor_config($hook, $type, $value, $params){
             'extends' => array(),
             'permissions' => array(
                 'menus' => array(
-                    'site::activity' => array('rule' => 'deny'),
-                    'site::blog' => array('rule' => 'deny'),
-                    'site::bookmarks' => array('rule' => 'deny'),
-                    'site::files' => array('rule' => 'deny'),
-                    'site::groups' => array('rule' => 'deny'),
-                    'site::members' => array('rule' => 'deny'),
-                    'site::pages' => array('rule' => 'deny'),
-                    'site::file' => array('rule' => 'deny'),
-                    'site::thewire'=> array('rule' => 'deny'),
+                    'site' => array('rule' => 'deny'),
                 ),
                 'pages' => array (
-                     'regexp(^\/(?!(contact|about|$)\/?$))' => array(
+                     'regexp(/^((?!contact|about|forgotpassword|$).)*$/)' => array(
                         'rule' => 'deny',
                         'forward' => '',
                     ),
@@ -45,7 +37,7 @@ function unprivileged_visitor_config($hook, $type, $value, $params){
                     ),
                 ),
                 'actions' => array(
-                    'regexp(/.*/)' => array(
+                    'regexp(/^((?!login|user\/requestnewpassword).)*$/)' => array(
                         'rule' => 'deny',
                     ),
                 ),
