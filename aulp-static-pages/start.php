@@ -21,9 +21,19 @@
 elgg_register_event_handler('init', 'system', 'aulp_static_pages_init');
 
 function aulp_static_pages_init() {
-    // Add new menu item 'AULP' to point to home page
-    elgg_register_menu_item('site', array('name' => 'aulp', 'text' => 'AULP', 'href' => elgg_get_site_url()));
-
+    // Add new menu items to point to home page, contact and about
+    elgg_register_menu_item('page', array(
+        'name' => 'contact',
+        'text' => 'Contact',
+        'href' => elgg_get_site_url() . "contact"));
+    elgg_register_menu_item('page', array(
+        'name' => 'about',
+        'text' => 'About',
+        'href' => elgg_get_site_url() . "about"));
+    elgg_register_menu_item('page', array(
+        'name' => 'home',
+        'text' => 'Home',
+        'href' => elgg_get_site_url()));
     // Register plugin hook to render home page
     elgg_register_plugin_hook_handler('index', 'system', 'aulp_home');
 
