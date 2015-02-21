@@ -1,5 +1,7 @@
 <?php
-//Generate title menu
+
+$title = elgg_echo('partner-blog:all:title');
+
 elgg_register_title_button();
 
 
@@ -13,4 +15,4 @@ $body .= elgg_list_entities(array(
 
 $body = elgg_view_layout('content', array('content' => $body));
 
-echo elgg_view_page("All Partner Blogs", $body);
+echo elgg_view_page($title, $body);

@@ -5,7 +5,7 @@ elgg_register_title_button();
 $owner = get_user_by_username($segments[1]);
 
 if(!$owner){
-    register_error("That user could not be found.");
+    register_error(elgg_echo('user:username:notfound'));
     forward(REFERRER);
 }
 $user_guid = $owner->getGUID();
@@ -21,4 +21,4 @@ $body .= elgg_list_entities(array(
 
 $body = elgg_view_layout('content', array('content' => $body));
 
-echo elgg_view_page("All Partner Blogs", $body);
+echo elgg_view_page($segments[1] . " " . elgg_echo('partner-blog:owner:title'), $body);

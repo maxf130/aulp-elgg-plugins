@@ -1,11 +1,11 @@
 <?php
 
-$title = "Create a new partner blog post";
+$title = elgg_echo('partner-blog:add:title');
 
 
 $content = elgg_view_title($title);
 
-$content .= elgg_view_form("partner-blog/save");
+$content .= elgg_view_form("partner-blog/save", array(), array('blog_post'  => false));
 
 $body = elgg_view_layout('one_sidebar', array(
     'content' => $content,

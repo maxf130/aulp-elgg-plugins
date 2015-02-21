@@ -1,13 +1,20 @@
 <?php
 $guid = $segments[1];
 
-$blog_post = elgg_get_entities(array(
+$blog_posts = elgg_get_entities(array(
     'type' => 'object',
     'subtype' => 'partner-blog',
     'guid' => $guid,
-))[0];
+));
 
-$title = "Edit partner blog post";
+if(!$blog_posts){
+    register_error(elgg_echo('partner-blog:find:error'));
+    forward(REFERER);
+}
+
+$blog_post = $blog_posts[0];
+
+$title = elgg_echo('partner-blog:edit:title');
 
 $content = elgg_view_title($title);
 

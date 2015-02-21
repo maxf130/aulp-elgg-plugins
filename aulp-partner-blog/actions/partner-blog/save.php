@@ -30,9 +30,9 @@ $blog->tags = $tags;
 $blog_guid = $blog->save();
 
 if ($blog_guid) {
-    system_message("Your blog post was saved.");
+    system_message(elgg_echo('partner-blog:save:success'));
     forward($blog->getURL());
 } else {
-    register_error("The blog post could not be saved!");
+    register_error(elgg_echo('partner-blog:save:error'));
     forward(REFERER);
 }
