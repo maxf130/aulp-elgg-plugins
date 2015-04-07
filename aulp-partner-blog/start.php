@@ -26,9 +26,6 @@ function aulp_partner_blog_init(){
     // Change default entity url
     elgg_register_entity_url_handler('object', 'partner-blog', 'partner_blog_url_handler');
 
-    // Configure roles for the partner role
-    elgg_register_plugin_hook_handler('roles:config', 'role', 'aulp_partner_config', 550);
-
     // If on the profile page then remove the 'add_widgets' functionality.
     if(elgg_in_context('profile')){
         elgg_register_plugin_hook_handler('view', 'page/layouts/widgets/add_button', 'add_button_remover');
@@ -76,90 +73,4 @@ function partner_blog_url_handler($entity) {
     $friendly_title = elgg_get_friendly_title($entity->title);
 
     return "partner-blog/view/{$entity->guid}/$friendly_title";
-}
-
-
-function aulp_partner_config($hook, $type, $value, $params){
-    $roles = array(
-        'aulp_partners' => array(
-            'title' => 'aulp_roles:partners',
-            'extends' => array(DEFAULT_ROLE),
-            'permissions' => array(
-                'pages' => array(
-                    'regexp(/^((?!partner-blog|profile|messages\/inbox|messages\/read|about|contact|avatar|settings\/user|settings\/statistics).+)/)' => array(
-                        'rule' => 'deny'
-                    ),
-                ),
-                'actions' => array(
-                    'regexp(/^((?!partner-blog|logout|avatar|profile|messages\/send|messages\/process|usersettings\/save).+)/)' => array(
-                        'rule' => 'deny'
-                    ),
-                ),
-                'views' => array(
-                    'regexp(/^partner-blog/.*/)' => array(
-                        'rule' => 'allow'
-                    ),
-                ),
-                'menus' => array(
-                    'topbar::friends' => array(
-                        'rule' => 'deny'
-                    ),
-                    'owner_block' => array(
-                        'rule' => 'deny'
-                    ),
-                    'title::add' => array(
-                        'rule' => 'deny'
-                    ),
-                    'page::1_plugins' => array(
-                        'rule' => 'deny'
-                    ),
-                    'page::2_a_user_notify' => array(
-                        'rule' => 'deny'
-                    ),
-                    'page::2_group_notify' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::activity' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::blog' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::bookmarks' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::file' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::groups' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::members' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::pages' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::partner_blog' => array(
-                        'rule' => 'deny'
-                    ),
-                    'site::thewire' => array(
-                        'rule' => 'deny'
-                    ),
-                    'extras::bookmark' => array(
-                        'rule' => 'deny'
-                    ),
-                    'filter::friend' => array(
-                        'rule' => 'deny'
-                    )
-                )
-            ),
-        ),
-    );
-
-    if(!is_array($value)) {
-        return $roles;
-    } else {
-        return array_merge($value, $roles);
-    }
 }

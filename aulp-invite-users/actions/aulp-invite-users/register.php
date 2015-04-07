@@ -94,7 +94,7 @@ try {
         //Role and set if necessary.
         if($validInvite->partner){
             //Set users role to partner
-            $partnerRole = roles_get_role_by_name('aulp_roles:partners');
+            $partnerRole = roles_get_role_by_name('aulp_partners');
             if(!$partnerRole){
                 //Role doesn't exist. Panic
                 throw new RegistrationException(elgg_echo('registerbad'));
