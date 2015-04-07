@@ -24,9 +24,10 @@ function aulp_roles_config($hook, $type, $value, $params){
             'permissions' => array(
                 'menus' => array(
                     'site' => array('rule' => 'deny'),
+                    'footer' => array('rule' => 'deny'),
                 ),
                 'pages' => array (
-                     'regexp(/^((?!contact|about|forgotpassword|secureinvite\/register|uservalidationbyemail\/confirm|$).)*$/)' => array(
+                     'regexp(/^((?!forgotpassword|secureinvite\/register|uservalidationbyemail\/confirm|$).)*$/)' => array(
                         'rule' => 'deny',
                         'forward' => '',
                     ),
