@@ -9,4 +9,4 @@ Edit/Delete Blog - Visible only to blog owner - Done
 
 ##Permissions
 Remove Add/edit/delete Blog page/view/action permissions for non partner users.
-Sort out permissions for partners
+Sort out permissions for partners - Done

@@ -26,7 +26,7 @@ function unprivileged_visitor_config($hook, $type, $value, $params){
                     'site' => array('rule' => 'deny'),
                 ),
                 'pages' => array (
-                     'regexp(/^((?!contact|about|forgotpassword|$).)*$/)' => array(
+                     'regexp(/^((?!contact|about|forgotpassword|secureinvite\/register|uservalidationbyemail\/confirm|$).)*$/)' => array(
                         'rule' => 'deny',
                         'forward' => '',
                     ),
@@ -37,7 +37,7 @@ function unprivileged_visitor_config($hook, $type, $value, $params){
                     ),
                 ),
                 'actions' => array(
-                    'regexp(/^((?!login|user\/requestnewpassword).)*$/)' => array(
+                    'regexp(/^((?!login|user\/requestnewpassword|aulp-invite-users\/register).)*$/)' => array(
                         'rule' => 'deny',
                     ),
                 ),
