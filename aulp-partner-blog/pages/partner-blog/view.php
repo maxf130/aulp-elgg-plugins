@@ -1,9 +1,13 @@
 <?php
 $guid = $segments[1];
 
-$blog_post = elgg_get_entities(array(
+$blog_post = "";
+$blog_posts = elgg_get_entities(array(
     'guid' => $guid
-))[0];
+));
+if ($blog_posts != FALSE){
+    $blog_post = $blog_posts[0];
+}
 $title = $blog_post->title;
 
 

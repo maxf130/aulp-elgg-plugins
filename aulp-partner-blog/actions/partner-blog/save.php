@@ -1,17 +1,20 @@
 <?php
 
+
 $title = get_input('title');
 $sub_title = get_input('subtitle');
 $body = get_input('body');
 $tags = string_to_tag_array(get_input('tags'));
 $guid = get_input('guid');
 
-
 $blog = "";
 if($guid) {
-    $blog = elgg_get_entities(array(
+    $blogs = elgg_get_entities(array(
         'guid' => $guid,
-    ))[0];
+    ));
+    if ($blogs != FALSE){
+        $blog = $blogs[0];
+    }
 } else {
     $blog = new ElggObject();
 }
