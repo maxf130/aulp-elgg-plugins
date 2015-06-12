@@ -62,9 +62,16 @@ function aulp_roles_config($hook, $type, $value, $params){
                         'rule' => 'deny',
                         'forward' => '',
                     ),
+                    'regexp(/^partner-blog\/add.*/)' => array(
+                        'rule' => 'deny',
+                        'forward' => 'partner-blog',
+                    ),
                 ),
                 'actions' => array(
                     'regexp(/^aulp-invite-users.*/)' => array(
+                        'rule' => 'deny',
+                    ),
+                    'regexp(/^partner-blog.*/)' => array(
                         'rule' => 'deny',
                     ),
                 ),
@@ -88,14 +95,20 @@ function aulp_roles_config($hook, $type, $value, $params){
                     'regexp(/^((?!partner-blog|profile|messages\/inbox|messages\/read|about|contact|avatar|settings\/user|settings\/statistics).+)/)' => array(
                         'rule' => 'deny'
                     ),
+                    'regexp(/^partner-blog\/add.*/)' => array(
+                        'rule' => 'allow',
+                    ),
                 ),
                 'actions' => array(
                     'regexp(/^((?!partner-blog|logout|avatar|profile|messages\/send|messages\/process|usersettings\/save).+)/)' => array(
                         'rule' => 'deny'
                     ),
+                    'regexp(/^partner-blog.*/)' => array(
+                        'rule' => 'allow',
+                    ),
                 ),
                 'views' => array(
-                    'regexp(/^partner-blog/.*/)' => array(
+                    'regexp(/^partner-blog\/.*/)' => array(
                         'rule' => 'allow'
                     ),
                 ),
@@ -106,9 +119,9 @@ function aulp_roles_config($hook, $type, $value, $params){
                     'owner_block' => array(
                         'rule' => 'deny'
                     ),
-                    'title::add' => array(
-                        'rule' => 'deny'
-                    ),
+                    #'title::add' => array(
+                    #    'rule' => 'deny'
+                    #),
                     'page::1_plugins' => array(
                         'rule' => 'deny'
                     ),
