@@ -19,7 +19,18 @@ function aulp_roles_init() {
 }
 
 function add_button_remover($hook, $type, $returnvalue, $params){
-    return "";
+    // Get current user
+    $user = elgg_get_logged_in_user_entity();
+    if ($user == NULL){
+        return $returnvalue;
+    } else {
+        $has_role = roles_has_role($user, "aulp_partners");
+        if($has_role){
+            return "";
+        } else {
+            return $returnvalue;
+        }
+    }
 }
 
 function aulp_roles_config($hook, $type, $value, $params){
