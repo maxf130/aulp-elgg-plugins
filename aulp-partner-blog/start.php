@@ -27,13 +27,6 @@ function aulp_partner_blog_init(){
     elgg_register_entity_url_handler('object', 'partner-blog', 'partner_blog_url_handler');
 
     // If on the profile page then remove the 'add_widgets' functionality.
-    if(elgg_in_context('profile')){
-        elgg_register_plugin_hook_handler('view', 'page/layouts/widgets/add_button', 'add_button_remover');
-    }
-}
-
-function add_button_remover($hook, $type, $returnvalue, $params){
-    return "";
 }
 
 
