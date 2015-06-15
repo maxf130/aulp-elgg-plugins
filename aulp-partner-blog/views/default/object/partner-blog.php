@@ -22,7 +22,7 @@ if($vars['full_view']){
 $content .= elgg_view('output/tags', array('value' => $vars['entity']->tags));
 
 
-if($vars['entity']->getOwner() == elgg_get_logged_in_user_guid()){
+if($vars['entity']->getOwnerGUID() == elgg_get_logged_in_user_guid()){
     // Provide link for editing/deleting the blog
     echo elgg_view_menu('entity', array(
         'entity' => $vars['entity'],
