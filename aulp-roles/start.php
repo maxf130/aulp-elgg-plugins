@@ -12,10 +12,13 @@ elgg_register_event_handler('init', 'system', 'aulp_roles_init');
 function aulp_roles_init() {
     elgg_register_plugin_hook_handler('roles:config', 'role', 'aulp_roles_config', 600);
 
+
     // If on the profile page then remove the 'add_widgets' functionality.
     if(elgg_in_context('profile')){
         elgg_register_plugin_hook_handler('view', 'page/layouts/widgets/add_button', 'add_button_remover');
     }
+
+
 }
 
 function add_button_remover($hook, $type, $returnvalue, $params){
@@ -95,6 +98,9 @@ function aulp_roles_config($hook, $type, $value, $params){
                     'page::invite' => array(
                         'rule' => 'deny'
                     ),
+                    'title::add-partner-blog' => array(
+                        'rule' => 'deny'
+                    ),
                 ),
             ),
         ),
@@ -130,9 +136,6 @@ function aulp_roles_config($hook, $type, $value, $params){
                     'owner_block' => array(
                         'rule' => 'deny'
                     ),
-                    #'title::add' => array(
-                    #    'rule' => 'deny'
-                    #),
                     'page::1_plugins' => array(
                         'rule' => 'deny'
                     ),
@@ -174,7 +177,10 @@ function aulp_roles_config($hook, $type, $value, $params){
                     ),
                     'filter::friend' => array(
                         'rule' => 'deny'
-                    )
+                    ),
+                    'title::add-partner-blog' => array(
+                        'rule' => 'allow'
+                    ),
                 )
             ),
         ),

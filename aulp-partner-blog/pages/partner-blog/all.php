@@ -2,7 +2,7 @@
 
 $title = elgg_echo('partner-blog:all:title');
 
-elgg_register_title_button();
+elgg_register_title_button(NULL, 'add-partner-blog');
 
 
 $body .= elgg_list_entities(array(

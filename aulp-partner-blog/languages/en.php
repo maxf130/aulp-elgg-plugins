@@ -11,7 +11,7 @@ $english = array(
     'partner-blog:edit:title' => 'Edit blog post',
     'partner-blog:owner:title' => 'partner blog posts',
     'partner-blog:friends:title' => 'friends partner blog posts',
-    'partner-blog:add' => 'Add partner blog post',
+    'partner-blog:add-partner-blog' => 'Add partner blog post',
     'partner-blog' => 'Partner Blogs'
 
 
