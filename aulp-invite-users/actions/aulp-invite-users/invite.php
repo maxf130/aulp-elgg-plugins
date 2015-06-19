@@ -76,7 +76,7 @@ foreach ($emails as $email) {
     }
 
     $link = elgg_get_site_url() . 'secureinvite/register?email=' . $email . '&invitecode=' . $inviteCode;
-    $message = elgg_echo('invitefriends:email', array(
+    $message = elgg_echo('aulp-invite-users:email', array(
             $site->name,
             $current_user->name,
             $emailmessage,
