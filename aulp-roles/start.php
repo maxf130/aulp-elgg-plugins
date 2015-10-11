@@ -50,7 +50,7 @@ function aulp_roles_config($hook, $type, $value, $params){
                     'footer' => array('rule' => 'deny'),
                 ),
                 'pages' => array (
-                     'regexp(/^((?!forgotpassword|secureinvite\/register|uservalidationbyemail\/confirm|$).)*$/)' => array(
+                     'regexp(/^((?!login|forgotpassword|secureinvite\/register|uservalidationbyemail\/confirm|$).)*$/)' => array(
                         'rule' => 'deny',
                         'forward' => '',
                     ),
