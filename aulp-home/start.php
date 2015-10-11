@@ -9,7 +9,10 @@ elgg_register_event_handler('init', 'system', 'aulp_home_init');
 function aulp_home_init() {
 
 	// Replace the default index page
-	elgg_register_plugin_hook_handler('index', 'system', 'aulp_home');
+        // Only if the user is not logged in
+        if (!elgg_is_logged_in()){
+            elgg_register_plugin_hook_handler('index', 'system', 'aulp_home');
+        }
 }
 
 function aulp_home($hook, $type, $return, $params) {
