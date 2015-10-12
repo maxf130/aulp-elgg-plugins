@@ -15,6 +15,8 @@ $english = array(
     Please note that this link expires after 24 hours.  Please contact the site administrator if you require a new invitation.
     After registering, you will receive another email to validate your email address.",
 
+    "aulp-invite-users:noinvite" => "No invites have been found for this email address. The link may have expired.",
+    "aulp-invite-users:already-logged-on" => "You are already loggen in.",
 
 
 

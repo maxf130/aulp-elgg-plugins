@@ -27,7 +27,7 @@ $invites = elgg_get_entities_from_metadata(array(
 ));
 if(!$invites || count($invites) == 0){
     //No invites for this user/code
-    // Should register an error.
+    throw new RegistrationException(elgg_echo('aulp-invite-users:noinvite'));
     forward();
 } else {
     foreach($invites as $invite){
@@ -42,11 +42,11 @@ if(!$invites || count($invites) == 0){
 }
 if(!$validInvite){
     //No valid invites available
-    //Should register a error.
+    throw new RegistrationException(elgg_echo('aulp-invite-users:noinvite'));
     forward();
 } else if (elgg_is_logged_in()){
     //A logged in user should not be able to register a new user
-    // Should register an error
+    throw new RegistrationException(elgg_echo('aulp-invite-users:already-logged-on'));
     forward();
 }
 
