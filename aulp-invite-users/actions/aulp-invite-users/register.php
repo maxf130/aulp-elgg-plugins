@@ -25,32 +25,30 @@ $invites = elgg_get_entities_from_metadata(array(
         array('name' => 'user_email', 'value' => $email)
     )
 ));
-if(!$invites || count($invites) == 0){
-    //No invites for this user/code
-    register_error(elgg_echo('aulp-invite-users:noinvite'));
-    forward();
-} else {
-    foreach($invites as $invite){
-        if(time() - 3600*24 <= $invite->date ){
-            //Allow user to create account
-            $validInvite = $invite;
-        } else {
-            //Delete the invite (This shouldn't really be here anyways)
-            $invite->delete();
-        }
-    }
-}
-if(!$validInvite){
-    //No valid invites available
-    register_error(elgg_echo('aulp-invite-users:noinvite'));
-    forward();
-} else if (elgg_is_logged_in()){
-    //A logged in user should not be able to register a new user
-    register_error(elgg_echo('aulp-invite-users:already-logged-on'));
-    forward();
-}
 
 try {
+  if(!$invites || count($invites) == 0){
+      //No invites for this user/code
+      throw new RegistrationException(elgg_echo('aulp-invite-users:noinvite'));
+  } else {
+      foreach($invites as $invite){
+          if(time() - 3600*24 <= $invite->date ){
+              //Allow user to create account
+              $validInvite = $invite;
+          } else {
+              //Delete the invite (This shouldn't really be here anyways)
+              $invite->delete();
+          }
+      }
+  }
+  if(!$validInvite){
+      //No valid invites available
+      throw new RegistrationException(elgg_echo('aulp-invite-users:noinvite'));
+  } else if (elgg_is_logged_in()){
+      //A logged in user should not be able to register a new user
+      throw new RegistrationException(elgg_echo('aulp-invite-users:already-logged-on'));
+  }
+
     if (trim($password) == "" || trim($password2) == "") {
         throw new RegistrationException(elgg_echo('RegistrationException:EmptyPassword'));
     }
