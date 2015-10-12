@@ -50,7 +50,7 @@ function aulp_roles_config($hook, $type, $value, $params){
                     'footer' => array('rule' => 'deny'),
                 ),
                 'pages' => array (
-                     'regexp(/^((?!login|forgotpassword|secureinvite\/register|uservalidationbyemail\/confirm|$).)*$/)' => array(
+                     'regexp(/^((?!login|resetpassword|forgotpassword|secureinvite\/register|uservalidationbyemail\/confirm|$).)*$/)' => array(
                         'rule' => 'deny',
                         'forward' => '',
                     ),
@@ -61,7 +61,7 @@ function aulp_roles_config($hook, $type, $value, $params){
                     ),
                 ),
                 'actions' => array(
-                    'regexp(/^((?!login|user\/requestnewpassword|aulp-invite-users\/register).)*$/)' => array(
+                    'regexp(/^((?!login|user\/passwordreset|user\/requestnewpassword|aulp-invite-users\/register).)*$/)' => array(
                         'rule' => 'deny',
                     ),
                 ),
