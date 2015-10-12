@@ -12,7 +12,7 @@ elgg_make_sticky_form('register');
 $username = get_input('username');
 $password = get_input('password', null, false);
 $password2 = get_input('password2', null, false);
-$email = strtolower(get_input('email'));
+$email = get_input('email');
 $name = get_input('name');
 $friend_guid = (int) get_input('friend_guid', 0);
 $invitecode = get_input('invitecode');
@@ -27,7 +27,7 @@ $invites = elgg_get_entities_from_metadata(array(
 ));
 if(!$invites || count($invites) == 0){
     //No invites for this user/code
-    throw new RegistrationException(elgg_echo('aulp-invite-users:noinvite'));
+    register_error(elgg_echo('aulp-invite-users:noinvite'));
     forward();
 } else {
     foreach($invites as $invite){
@@ -42,11 +42,11 @@ if(!$invites || count($invites) == 0){
 }
 if(!$validInvite){
     //No valid invites available
-    throw new RegistrationException(elgg_echo('aulp-invite-users:noinvite'));
+    register_error(elgg_echo('aulp-invite-users:noinvite'));
     forward();
 } else if (elgg_is_logged_in()){
     //A logged in user should not be able to register a new user
-    throw new RegistrationException(elgg_echo('aulp-invite-users:already-logged-on'));
+    register_error(elgg_echo('aulp-invite-users:already-logged-on'));
     forward();
 }
 
