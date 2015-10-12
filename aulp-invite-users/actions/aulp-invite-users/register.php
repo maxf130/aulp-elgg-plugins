@@ -12,7 +12,7 @@ elgg_make_sticky_form('register');
 $username = get_input('username');
 $password = get_input('password', null, false);
 $password2 = get_input('password2', null, false);
-$email = get_input('email');
+$email = strtolower(get_input('email'));
 $name = get_input('name');
 $friend_guid = (int) get_input('friend_guid', 0);
 $invitecode = get_input('invitecode');

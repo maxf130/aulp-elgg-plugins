@@ -7,7 +7,7 @@
  */
 
 $invitecode = get_input('invitecode');
-$email = get_input('email');
+$email = strtolower(get_input('email'));
 
 $invites = elgg_get_entities(array(
     'type' => 'object',
