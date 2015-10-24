@@ -55,9 +55,9 @@ $form_params = array(
 $body_params = array(
     'friend_guid' => $friend_guid,
     'invitecode' => $invitecode,
-    'e' => $email
+    'email' => $email
 );
-$content .= elgg_view_form('register', $form_params, $body_params);
+$content .= elgg_view_form('aulp-invite-users/register', $form_params, $body_params);
 
 $content .= elgg_view('help/register');
 
